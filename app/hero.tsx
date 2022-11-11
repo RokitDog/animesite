@@ -36,7 +36,7 @@ function Hero({popularAnimeData}: Props) {
         <SwiperSlide key={anime.animeId}>
           <div className='relative w-full before:w-full before:bg-black before:absolute before:left-0 z-10 before:top-0 before:h-full before:content=[""] before:opacity-40'>
             <h3 className='absolute right-8 bottom-16 text-5xl z-10'>{anime.animeTitle}</h3>
-            <Link href='/' className='absolute left-8 bottom-16 text-2xl z-10 bg-gray-500 p-3 hover:bg-gray-400 transition-all duration-150 ease-in-out'>
+            <Link href={`/anime/${anime.animeId}?episode=1`} className='absolute left-8 bottom-16 text-2xl z-10 bg-gray-500 p-3 hover:bg-gray-400 transition-all duration-150 ease-in-out'>
               Watch Now
             </Link>
             <Image 
