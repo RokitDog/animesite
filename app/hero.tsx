@@ -46,7 +46,7 @@ function Hero({popularAnimeData}: Props) {
               blurDataURL={anime.animeImg}
               width={1193}
               height={549}
-              className='w-[1193px] h-[549px] object-cover object-center'
+              className='w-[1193px] h-[549px] object-cover object-center aspect-auto'
               />
           </div>
         </SwiperSlide>

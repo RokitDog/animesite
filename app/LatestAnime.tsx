@@ -13,6 +13,9 @@ async function LatestAnime() {
 
   return (
     <>
+      <div className="mt-[34px] bg-gray-900 p-4 rounded-md">
+        <h2 className="text-2xl font-medium">Recent Episodes</h2>
+      </div>
       <AnimeCard recentanime={recentAnimeData} />
       <AnimeCard recentanime={recentAnimeData2} />
       <AnimeCard recentanime={recentAnimeData3} />

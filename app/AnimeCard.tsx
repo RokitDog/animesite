@@ -24,10 +24,10 @@ function AnimeCard({recentanime}: Props) {
             alt='Anime Image Cover'
             src={anime.animeImg}
             placeholder='blur'
-            blurDataURL={anime.animeImg}
+            blurDataURL={anime.animeId}
             width={301}
             height={193}
-            className='w-[301px] h-[193px] object-cover object-center opacity-100 hover:opacity-40 transition-opacity duration-150 relative'
+            className='w-[301px] aspect-square object-cover object-center opacity-100 hover:opacity-40 transition-opacity duration-150 relative'
             />
             <div className="absolute bottom-0 bg-[#F6399D] group-hover:bg-opacity-100 transition-opacity duration-150 ease-in-out bg-opacity-90 w-full h-6 opacity-100 flex justify-between px-2 ">
               <h2 className='text-sm font-medium truncate max-w-[65%] leading-[1.55rem]'>{anime.animeTitle}</h2>

@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import './global.css';
 import { Inter } from '@next/font/google';
 import Head from './head';
+import Link from 'next/link';
 import Hero from './hero';
 
 const inter = Inter();
@@ -23,17 +23,10 @@ export default async function RootLayout({
     <html lang="en" className={inter.className}>
       <Head />
       <body className='bg-[#202020] text-white'>
-        <header className='max-w-[1193px] mx-auto'>
-            <div>
-              <Link href='/'>
-                Logo
-              </Link>
-            </div>
-        </header>
+        <div className='max-w-[1193px] mx-auto'><nav><div><Link href='/'>Logo</Link></div></nav></div>
         <main className='max-w-[1193px] mx-auto'>
-        <Hero popularAnimeData={popularAnimeData} />
-
-        {children}
+          <Hero popularAnimeData={popularAnimeData} />
+          {children}
         </main>
       </body>
     </html>
