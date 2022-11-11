@@ -1,18 +1,16 @@
 import Link from "next/link";
-import Iframe from "./Iframe";
+import { Suspense } from "react";
+import CurentEpisode from "./CurentEpisode";
+import Pagination from "./Pagination";
 
 const fetchEpisode = async (name: String, episode: String) => {
     const data = await fetch(`https://gogoanime.consumet.org/vidcdn/watch/${name}-episode-${episode}`, {cache: 'force-cache'})
-    const animeEpisode = await data.json();
-
-    return animeEpisode
+    return data.json()
 }
 
 const fetchAnimeDetails = async (name: String) => {
   const data = await fetch(`https://gogoanime.consumet.org/anime-details/${name}`, {cache: 'force-cache'})
-  const animeDetails = await data.json();
-
-  return animeDetails;
+  return data.json()
 }
 
 export default async function Page({ params, searchParams }: {
@@ -20,21 +18,19 @@ export default async function Page({ params, searchParams }: {
     searchParams: { episode: string },
   }) {
 
-    const {Referer} = await fetchEpisode(params.slug, searchParams.episode)
-    const animeDetails = await fetchAnimeDetails(params.slug);
-    const totalEpisodes  = Array.from(Array(Number(animeDetails.totalEpisodes)).keys());
-
     return (
       <>
-        <h2 className="text-2xl font-medium mt-[34px] capitalize">{animeDetails.animeTitle}, Episode: {searchParams.episode}</h2>
-        {Referer ? <Iframe episode={Referer} /> : <p className="text-4xl text-center my-[68px]">We are sorry, the episode that you are looking for doesnt exist...</p>}
+        <Suspense fallback={<div>Loading Episode</div>}>
+        <CurentEpisode fetchEpisode={fetchEpisode} fetchAnimeDetails={fetchAnimeDetails} slug={params.slug} searchParams={searchParams.episode} />
+        </Suspense>
         <div className="flex items-center justify-between mt-[12px]">
         <Link className="bg-gray-500 p-3 hover:bg-gray-400 transition-all duration-150 ease-in-out" href={`/anime/${params.slug}?episode=${Number(searchParams.episode) - 1}`}>Previous Episode</Link>
         <Link className="bg-gray-500 p-3 hover:bg-gray-400 transition-all duration-150 ease-in-out" href={`/anime/${params.slug}?episode=${Number(searchParams.episode) + 1}`}>Next Episode</Link>
         </div>
-        <div className="flex flex-wrap gap-2 items-start justify-start mt-[12px] mb-[34px]">
-          {totalEpisodes.map((episode) => <Link href={`/anime/${params.slug}?episode=${episode+1}`} key={episode} className={`px-2 py-1 rounded-md hover:bg-white hover:text-black hover:shadow-md  transition-all duration-150 ease-in-out cursor-pointer ${episode + 1 === Number(searchParams.episode) ? 'bg-[#F6399D]' : 'bg-gray-900'}`}>{episode + 1}</Link>)}
-        </div>
+        <Suspense fallback={<div>Loading Pagination</div>}>
+          <Pagination params={searchParams.episode} slug={params.slug} fetchAnimeDetails={fetchAnimeDetails} />
+        </Suspense>
       </>
     );
   }
+  
