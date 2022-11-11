@@ -9,7 +9,6 @@ const getRecentAnime = async (pageNumber: String) => {
 async function LatestAnime() {
   const recentAnimeData = await getRecentAnime('1');
   const recentAnimeData2 = await getRecentAnime('2');
-  const recentAnimeData3 = await getRecentAnime('3');
 
   return (
     <>
@@ -18,7 +17,6 @@ async function LatestAnime() {
       </div>
       <AnimeCard recentanime={recentAnimeData} />
       <AnimeCard recentanime={recentAnimeData2} />
-      <AnimeCard recentanime={recentAnimeData3} />
     </>
   )
 }
