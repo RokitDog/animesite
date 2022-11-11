@@ -15,6 +15,9 @@ const nextConfig = {
         hostname: 'gogocdn.net',
       }
     ]
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   }
 }
 
