@@ -21,7 +21,7 @@ export default async function Page({ params, searchParams }: {
     return (
       <>
         <Suspense fallback={<div>Loading Episode</div>}>
-        <CurentEpisode fetchEpisode={fetchEpisode} fetchAnimeDetails={fetchAnimeDetails} slug={params.slug} searchParams={searchParams.episode} />
+          <CurentEpisode fetchEpisode={fetchEpisode} slug={params.slug} searchParams={searchParams.episode} />
         </Suspense>
         <div className="flex items-center justify-between mt-[12px]">
         <Link className="bg-gray-500 p-3 hover:bg-gray-400 transition-all duration-150 ease-in-out" href={`/anime/${params.slug}?episode=${Number(searchParams.episode) - 1}`}>Previous Episode</Link>

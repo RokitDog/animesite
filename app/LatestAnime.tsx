@@ -2,7 +2,7 @@
 import AnimeCard from "./AnimeCard";
 
 const getRecentAnime = async (pageNumber: String) => {
-    const response = await fetch(`https://gogoanime.consumet.org/recent-release?page=${pageNumber}`, { cache: 'no-cache'});
+    const response = await fetch(`https://gogoanime.consumet.org/recent-release?page=${pageNumber}`, { cache: 'no-store'});
     return await response.json()
 }
 

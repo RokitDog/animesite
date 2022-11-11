@@ -1,11 +1,10 @@
 interface Props {
     searchParams: string
     fetchEpisode: any
-    fetchAnimeDetails: any
     slug: string
 }
 
-async function CurentEpisode({fetchEpisode, fetchAnimeDetails, slug, searchParams}: Props) {
+async function CurentEpisode({fetchEpisode, slug, searchParams}: Props) {
   const {Referer} = await fetchEpisode(slug, searchParams);
 
   return (

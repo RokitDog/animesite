@@ -7,8 +7,8 @@ interface Props {
 }
 
 async function Pagination({fetchAnimeDetails, slug, params}: Props) {
-    const animeDetails = await fetchAnimeDetails(slug)
-    const totalEpisodes  = Array.from(Array(Number(animeDetails.totalEpisodes)).keys());
+      const animeDetails = await fetchAnimeDetails(slug)
+      const totalEpisodes  = Array.from(Array(Number(animeDetails.totalEpisodes)).keys());
 
   return (
     <div className="flex flex-wrap gap-2 items-start justify-start mt-[12px] mb-[34px]">
