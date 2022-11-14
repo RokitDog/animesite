@@ -10,7 +10,7 @@ type Props = {
 function VideoComponent({src1, src2}: Props) {
   return (
     <div className='aspect-video'>
-        <ReactPlayer url={src1 || src2} controls={true} width='100%' height='100%' light={true}/>
+        <ReactPlayer url={src1 || src2} controls={true} width='100%' height='100%'/>
     </div>
   )
 }
