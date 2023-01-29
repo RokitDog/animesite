@@ -3,12 +3,12 @@ import CurentEpisode from "./CurentEpisode";
 import Pagination from "./Pagination";
 
 const fetchEpisode = async (name: String, episode: String) => {
-    const data = await fetch(`https://gogoanime.consumet.org/vidcdn/watch/${name}-episode-${episode}`, {cache: 'force-cache'})
+    const data = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${name}-episode-${episode}`, {cache: 'force-cache'})
     return data.json()
 }
 
 const fetchAnimeDetails = async (name: String) => {
-  const data = await fetch(`https://gogoanime.consumet.org/anime-details/${name}`, {cache: 'force-cache'})
+  const data = await fetch(`https://api.consumet.org/anime/gogoanime/info/${name}`, {cache: 'force-cache'})
   return data.json()
 }
 
@@ -30,6 +30,7 @@ export default async function Page({ params, searchParams }: {
             </div>
           </div>
         }>
+          {/* @ts-ignore */}
           <CurentEpisode fetchEpisode={fetchEpisode} slug={params.slug} searchParams={searchParams.episode} />
         </Suspense>
 
@@ -44,6 +45,7 @@ export default async function Page({ params, searchParams }: {
             </div>
           </div>
         }>
+          {/* @ts-ignore */}
           <Pagination params={searchParams.episode} slug={params.slug} fetchAnimeDetails={fetchAnimeDetails} />
         </Suspense>
       </>
