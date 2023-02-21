@@ -11,6 +11,8 @@ interface Props {
 async function CurentEpisode({fetchEpisode, slug, searchParams}: Props) {
   const {sources} = await fetchEpisode(slug, searchParams);
 
+  console.log(sources)
+
   if(!sources) {
     notFound();
   }

@@ -3,12 +3,12 @@ import CurentEpisode from "./CurentEpisode";
 import Pagination from "./Pagination";
 
 const fetchEpisode = async (name: String, episode: String) => {
-    const data = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${name}-episode-${episode}`, {cache: 'force-cache'})
+    const data = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${name}-episode-${episode}`, {cache: 'no-store'})
     return data.json()
 }
 
 const fetchAnimeDetails = async (name: String) => {
-  const data = await fetch(`https://api.consumet.org/anime/gogoanime/info/${name}`, {cache: 'force-cache'})
+  const data = await fetch(`https://api.consumet.org/anime/gogoanime/info/${name}`, {cache: 'no-store'})
   return data.json()
 }
 
@@ -16,6 +16,7 @@ export default async function Page({ params, searchParams }: {
     params: { slug: string },
     searchParams: { episode: string },
   }) {
+
 
     return (
       <>
