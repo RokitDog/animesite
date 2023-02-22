@@ -1,12 +1,16 @@
 import Link from "next/link";
 
 interface Props {
-    fetchAnimeDetails: any
     slug: string
     params: string
 }
 
-async function Pagination({fetchAnimeDetails, slug, params}: Props) {
+const fetchAnimeDetails = async (name: String) => {
+  const data = await fetch(`https://api.consumet.org/anime/gogoanime/info/${name}`, {cache: 'force-cache'})
+  return data.json()
+}
+
+async function Pagination({ slug, params}: Props) {
       const animeDetails = await fetchAnimeDetails(slug)
       const totalEpisodes  = Array.from(Array(Number(animeDetails.totalEpisodes)).keys());
   return (
