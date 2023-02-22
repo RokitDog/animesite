@@ -1,25 +1,22 @@
-import { notFound } from 'next/navigation';
+'use client'
 import VideoComponent from './VideoComponent';
+import useSWR from 'swr'
 
-interface Props {
-    searchParams: string
-    fetchEpisode: any
-    slug: string
-}
 
 const fetchEpisode = async (name: String, episode: String) => {
   const data = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${name}-episode-${episode}`, {cache: 'force-cache'})
   return data.json()
 }
 
-async function CurentEpisode({ slug, searchParams}: Props) {
-  const {sources} = await fetchEpisode(slug, searchParams);
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-  if(!sources) {
-    notFound();
-  }
+function CurentEpisode({ slug, searchParams }: {slug: string, searchParams: string}) {
+  const { data, error, isLoading } = useSWR(`https://api.consumet.org/anime/gogoanime/watch/${slug}-episode-${searchParams}`, fetcher)
 
-  const link1 = sources[4].url;
+  if (isLoading) return <div className='aspect-video mt-[32px] mb-3'>Loading...</div>
+  if (error) return <div>Failed to load</div>
+
+  const link1 = data?.sources[4].url
 
   const episodeName = slug.replaceAll('-', ' ');
 
