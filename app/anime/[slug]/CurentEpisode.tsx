@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import VideoComponent from './VideoComponent';
 
@@ -7,15 +8,8 @@ interface Props {
     slug: string
 }
 
-const fetchEpisode = async (name: String, episode: String) => {
-  const data = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${name}-episode-${episode}`, {cache: 'force-cache'})
-  return data.json()
-}
-
-async function CurentEpisode({slug, searchParams}: Props) {
+async function CurentEpisode({fetchEpisode, slug, searchParams}: Props) {
   const {sources} = await fetchEpisode(slug, searchParams);
-
-  console.log(sources)
 
   if(!sources) {
     notFound();
@@ -28,7 +22,7 @@ async function CurentEpisode({slug, searchParams}: Props) {
   return (
     <>
         <h2 className="text-2xl font-medium mt-[34px] capitalize">{episodeName}, Episode: {searchParams}</h2>
-        <VideoComponent src1={link1} />
+        <VideoComponent src1={link1}/>
     </>
   )
 }
